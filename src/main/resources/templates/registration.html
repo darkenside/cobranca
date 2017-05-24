@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form"
+	>
+<head>
+<title>Registro</title>
+    <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css" />
+<link th:href="@{/css/common.css}" type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"> 
+			<img alt="banner" th:src="@{/images/banner.jpg}" />
+			 </a>
+		    	
+		</div>
+	</div>
+</nav>
+	
+<div class="container">
+  <form method="POST"  th:action="@{/registration}" class="form-signin">
+
+
+        <h2 class="text-center">Cadastro Usuário</h2>
+       <spring:bind path="username">
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username"/>
+                <form:errors path="username"></form:errors>
+            </div>
+         </spring:bind>
+        <spring:bind path="password">
+            <div class="form-group">
+                <input type="password"  class="form-control" name="password" id="password"  placeholder="Password"/>
+                 <form:errors path="password"></form:errors>
+            </div>
+       </spring:bind>
+       <spring:bind path="passwordConfirm">
+           <div class="form-group">
+                <input type="password"  class="form-control"  id="passwordConfirm" name="passwordConfirm"
+                            placeholder="Confirm your password"/>
+                <form:errors path="passwordConfirm"></form:errors>
+            </div>
+       </spring:bind>
+
+        <button class="btn btn-lg btn-primary btn-block text-center" type="submit">Registrar</button>
+    </form>
+
+</div>
+
+  <script  src="/js/jquery-3.2.1.min.js"></script>
+	<script  src="/js/jquery.maskMoney.min.js"></script>
+	<script  src="/js/bootstrap.min.js"></script>
+	<script  src="/js/bootstrap-datepicker.min.js"></script>
+	<script  src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
+	<script  src="/js/cobranca.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+        version="2.0">
+
+	<named-query name="Titulo.findByTituloRecuperarNamedOrmXml">
+		 <query><![CDATA[select t from Titulo t]]> </query>
+	</named-query>
+	
+<named-native-query name="Titulo.findByTituloRecuperarSelecaoNamedOrmXml" result-class="com.omalotech.cobranca.model.Titulo">	
+	<query><![CDATA[select tt.* from titulo tt where  (tt.status = :status2 or :status2 is null) and 
+(tt.data_vencimento >= :dataVencimento or :dataVencimento is null) and
+(tt.data_vencimento <= :dataVencimentoFinal or :dataVencimentoFinal is null) and
+(LOWER(tt.descricao) LIKE LOWER(CONCAT('%',:descricao, '%')) or :descricao is null)]]></query>
+	</named-native-query>	
+
+
+</entity-mappings>
