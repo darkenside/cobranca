@@ -1,24 +1,42 @@
 package com.omalotech.cobranca.model;
 
-import javax.persistence.*;
-import java.util.Set;
 
-@Entity
-@Table(name = "user")
+//import java.util.Set;
+
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+
+//import java.util.Set;
+
+//@Entity
+@Document(collection = "user")
 public class User {
-    private Long id;
+    private ObjectId id ;
+    
+   
     private String username;
+    
+ 
     private String password;
+   
+   
     private String passwordConfirm;
-    private Set<Role> roles;
+   
+  
+    private String email;
+    
+ //   private Set<Role> roles;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+ 
+    //@Generated(value = Generated)
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -47,13 +65,21 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
-    }
+    //@ManyToMany
+    //@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+  //  public Set<Role> getRoles() {
+  //     return roles;
+  // }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//   public void setRoles(Set<Role> roles) {
+ //      this.roles = roles;
+ //  }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
  } 

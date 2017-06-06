@@ -10,37 +10,32 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}" />
 <link th:href="@{/css/common.css}" type="text/css" rel="stylesheet"/>
 </head>
-<body>
-<nav class="navbar navbar-inverse navbar-static-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#"> 
-			<img alt="banner" th:src="@{/images/banner.jpg}" />
-			 </a>
-		    	
-		</div>
-	</div>
-</nav>
-  <form class="form-signin" method="POST" th:action="@{/login}" >
+<body class="body">
+<header layout:include="Cabecalho2"></header>
+<footer layout:include="Footer" ></footer>
 
-        <h2 class="text-center">Autenticação</h2>
+  <form class="form-signin" method="POST" th:action="@{/login}"  >
+<div layout:include="MensagemLogin"></div>
+ <br></br> 
+<div class=" border">
+        <h2 class="text-center" th:text="#{com.omalotech.autenticacao}"></h2>
 
-        <div class="form-group}">
-            <span>Nome</span>
+        <div class="form-group">
+            <span th:text="#{com.omalotech.nome}"></span>
             <input name="username" type="text" class="form-control"  id="username" placeholder="Usuário" />
             </div>
             <div class="form-group">
-            <span>Senha</span>
+            <span th:text="#{com.omalotech.senha}"></span>
             <input name="password" type="password"  id="password" class="form-control" placeholder="Senha"/>
             
              <input name="passwordConfirm" type="hidden" id="passwordConfirm" value="abc"/>
             
 			</div>
 			<div class="form-group">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Logar</button>
-            <h4 class="text-center"><a th:href="@{/registration}">Crie uma nova conta</a></h4>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{com.omalotech.logar}"></button>
+            <h4 class="text-center"><a th:href="@{/registration}"  th:text="#{com.omalotech.crie.conta}"></a></h4>
         </div>
-
+</div>
     </form>
     
     <script  th:src="@{/js/jquery-3.2.1.min.js}"></script>

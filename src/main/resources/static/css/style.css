@@ -20,6 +20,30 @@
 
 }
 
+.body{
+	padding-top: 0px;
+	padding-bottom: 0px;
+
+}
+
+.footer{
+ position: absolute;
+  bottom: 0;
+  margin-bottom:0;
+  width: 100%;
+
+}
+
+.footer-text{
+	position: absolute;
+	color: red;
+	margin-left: 43.5%;
+	margin-top: 6px;
+	
+	
+}
+
+
 .otech-link-panel{
 	
 	float:right;
@@ -40,4 +64,25 @@
 	
 	float:left;
 	padding-top:2px;
+}
+
+.border{
+	background-color: #ccc;
+	width: 100%;
+	height: 380px;
+	margin:auto;
+	border:10px solid #333;
+	border-radius: 50px;
+	box-shadow: 5px 5px 5px 5px blue;
+}
+
+.border2{
+	background-color: #ccc;
+	width: 90%;
+	height: 445px;
+	margin:auto;
+	border:10px solid #333;
+	border-radius: 50px;
+	box-shadow: 5px 5px 5px 5px blue;
+	
 }

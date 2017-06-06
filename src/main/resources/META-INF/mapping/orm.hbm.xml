@@ -13,7 +13,8 @@
 	<query><![CDATA[select tt.* from titulo tt where  (tt.status = :status2 or :status2 is null) and 
 (tt.data_vencimento >= :dataVencimento or :dataVencimento is null) and
 (tt.data_vencimento <= :dataVencimentoFinal or :dataVencimentoFinal is null) and
-(LOWER(tt.descricao) LIKE LOWER(CONCAT('%',:descricao, '%')) or :descricao is null)]]></query>
+(LOWER(tt.descricao) LIKE LOWER(CONCAT('%',:descricao, '%')) or :descricao is null) and
+tt.id_user=:idUsuario]]></query>
 	</named-native-query>	
 
 

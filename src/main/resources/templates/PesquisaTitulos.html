@@ -5,7 +5,7 @@
 	layout:decorator="LayoutPadrao">
 <head>
 
-<title>Pequisa de Títulos</title>
+<title th:text="#{com.omalotech.pesquisa.de.t}"></title>
 
 </head>
 <section layout:fragment="conteudo">
@@ -14,9 +14,8 @@
 
 		<div class="panel-heading">
 			<div class="clearfix">
-				<h1 class="panel-title otech-titulo-panel">Pesquisa de Títulos</h1>
-				<a class="btn btn-link otech-link-panel" th:href="@{/titulos/novo}">Novo
-					Titulo</a>
+				<h1 class="panel-title otech-titulo-panel" th:text="#{com.omalotech.pesquisa.de.t}"></h1>
+				<a class="btn btn-link otech-link-panel" th:href="@{/titulos/novo}" th:text="#{com.omalotech.novo.titulo}"></a>
 			</div>
 		</div>
 
@@ -51,7 +50,7 @@
 				
 				<div class="col-sm-2">
 					<select class="form-control" id="status" name="status" >
-						<option value="" selected="selected">Status</option>
+						<option value="" selected="selected" th:text="#{com.omalotech.status}"></option>
 						<option th:each="status: ${todosStatusTitulo}" th:field="*{status}"
 							th:value="${status}" th:text="${status.descricao}"></option>						
 					</select>
@@ -63,12 +62,12 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th class="text-center col-md-2"></th>
-						<th>Descrição</th>
-						<th class="text-center col-md-2">Data de Vencimento</th>
-						<th class="text-right col-md-2">Valor</th>
-						<th class="text-center col-md-2">Status</th>
-						<th class="col-md-1"></th>
+						<th class="text-center col-md-2" th:text="#{com.omalotech.codigo}"></th>
+						<th th:text="#{com.omalotech.descricao}"></th>
+						<th class="text-center col-md-2" th:text="#{com.omalotech.dataVencimento}"></th>
+						<th class="text-right col-md-2" th:text="#{com.omalotech.valor}"></th>
+						<th class="text-center col-md-2" th:text="#{com.omalotech.status}"></th>
+						<th class="text-center col-md-1" th:text="#{com.omalotech.alter}"></th>
 					</tr>
 
 				</thead>
@@ -104,12 +103,13 @@
 					 </td>
 					</tr>
 					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(titulosPesquisa)}">Nenhum
-							registro foi encontrado</td>
+						<td colspan="6" th:if="${#lists.isEmpty(titulosPesquisa)}" th:texy="#{com.omalotech.registro.nao.encont}"></td>
 					</tr>
 
 					</tbody>
 				</table>
+				 <br></br>
+				 <h4 class="text-left"><a th:href="@{/tituloClient/pesquisa}">Pesquisa por usuário via Rest</a></h4>
 			</div>
 		</div>
 		

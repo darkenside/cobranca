@@ -2,56 +2,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:spring="http://www.springframework.org/tags"
-	xmlns:form="http://www.springframework.org/tags/form"
-	>
+	xmlns:spring="http://www.springframework.org/tags">
 <head>
 <title>Registro</title>
     <meta charset="utf-8"/>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css" />
-<link th:href="@{/css/common.css}" type="text/css" rel="stylesheet"/>
+<link  rel="stylesheet" type="text/css"  th:href="@{/css/common.css}"/>
+
+
 </head>
 
-<body>
-<nav class="navbar navbar-inverse navbar-static-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#"> 
-			<img alt="banner" th:src="@{/images/banner.jpg}" />
-			 </a>
-		    	
-		</div>
-	</div>
-</nav>
-	
-<div class="container">
-  <form method="POST"  th:action="@{/registration}" class="form-signin">
-
-
+<body class="body">
+<header layout:include="Cabecalho2"></header>
+<footer layout:include="Footer" ></footer>
+<div class="container-fluid">
+  <form method="POST"  th:action="@{/registration}"  th:object="${userForm}"> 
+  	<div layout:include="Mensagem"  class="container-fluid"></div>
+  	<br></br>
+<div class="form-signin border2">
         <h2 class="text-center">Cadastro Usuário</h2>
-       <spring:bind path="username">
-            <div class="form-group">
-                <input type="text" class="form-control" name="username" id="username" placeholder="Username"/>
-                <form:errors path="username"></form:errors>
+      
+            <div class="form-group"  th:classappend="${#fields.hasErrors('username')} ? has-error" >
+                <input type="text" class="form-control"  id="username" th:field="*{username}" placeholder="Nome de usuário"
+               />
+              
             </div>
-         </spring:bind>
-        <spring:bind path="password">
-            <div class="form-group">
-                <input type="password"  class="form-control" name="password" id="password"  placeholder="Password"/>
-                 <form:errors path="password"></form:errors>
+         
+                
+            <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
+                <input type="text" class="form-control"  id="email" th:field="*{email}" placeholder="e-mail"/>
+                
             </div>
-       </spring:bind>
-       <spring:bind path="passwordConfirm">
-           <div class="form-group">
-                <input type="password"  class="form-control"  id="passwordConfirm" name="passwordConfirm"
-                            placeholder="Confirm your password"/>
-                <form:errors path="passwordConfirm"></form:errors>
+        
+        
+            <div class="form-group" th:classappend="${#fields.hasErrors('password')} ? has-error">
+                <input type="password"  class="form-control"  id="password" th:field="*{password}" placeholder="Senha"/>
+                
             </div>
-       </spring:bind>
+     
+     
+           <div class="form-group"  th:classappend="${#fields.hasErrors('passwordConfirm')} ? has-error">
+                <input type="password"  class="form-control"  id="passwordConfirm"  th:field="*{passwordConfirm}"
+                            placeholder="Confirme sua senha"/>
+                
+            </div>
+     
 
         <button class="btn btn-lg btn-primary btn-block text-center" type="submit">Registrar</button>
+        
+         <h4 class="text-center"><a th:href="@{/login}">Login</a></h4>
+</div>
     </form>
 
 </div>
@@ -62,5 +64,6 @@
 	<script  src="/js/bootstrap-datepicker.min.js"></script>
 	<script  src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
 	<script  src="/js/cobranca.js"></script>
+
 </body>
 </html>

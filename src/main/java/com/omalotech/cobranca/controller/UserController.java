@@ -1,6 +1,7 @@
 package com.omalotech.cobranca.controller;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -8,12 +9,12 @@ import org.springframework.ui.Model;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.omalotech.cobranca.MessageResource;
 import com.omalotech.cobranca.model.User;
 import com.omalotech.cobranca.repository.UserForm;
 import com.omalotech.cobranca.service.SecurityService;
@@ -22,7 +23,12 @@ import com.omalotech.cobranca.validator.UserValidator;
 
 @Controller
 public class UserController {
-    @Autowired
+    
+	
+	@Autowired
+	MessageResource messag;
+	
+	@Autowired
     private UserService userService;
 
     @Autowired
@@ -40,32 +46,32 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@Validated UserForm uform, Errors erros, RedirectAttributes redirect) {
-        User userForm = new User();
-    	userForm.setUsername(uform.getUsername());
-    	userForm.setPassword(uform.getPassword());
-    	userForm.setPasswordConfirm(uform.getPasswordConfirm());
-    	
-    	userValidator.validate(userForm, erros);
+        User user = new User();
+    	user.setUsername(uform.getUsername());
+    	user.setPassword(uform.getPassword());
+    	user.setPasswordConfirm(uform.getPasswordConfirm());
+    	user.setEmail(uform.getEmail());
+    	userValidator.validate(user, erros,redirect);
 
         if (erros.hasErrors()) {
             return "registration";
         }
 
-        userService.save(userForm);
+        userService.save(user);
 
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+        securityService.autologin(user.getUsername(), user.getPasswordConfirm());
 
         return "redirect:/titulos";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
+    public String login(Model model,String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
+        	model.addAttribute("mensagem", messag.mensagemProperties("com.omalotech.login.erro"));
+        	
+        if (logout != null){
+         //   model.addAttribute("message", "");
+        }
         
         return "/login";
     } 

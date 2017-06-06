@@ -13,12 +13,14 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}" />
 <link th:href="@{/css/common.css}" type="text/css" rel="stylesheet"/>
 </head>
-<body>
+<body class="body">
 
 		<header layout:include="Cabecalho"></header>
 
        <section layout:fragment="conteudo"></section>
 
+		<footer layout:include="Footer" ></footer>
+		
 	<script  th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script  th:src="@{/js/jquery.maskMoney.min.js}"></script>
 	<script  th:src="@{/js/bootstrap.min.js}"></script>

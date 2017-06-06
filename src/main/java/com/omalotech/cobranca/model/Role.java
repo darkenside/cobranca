@@ -1,22 +1,31 @@
 package com.omalotech.cobranca.model;
 
-import javax.persistence.*;
+import org.bson.types.ObjectId;
+
+//import javax.persistence.*;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+//import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Set;
 
-@Entity
-@Table(name = "role")
+//@Entity
+//@Document(collection = "role")
 public class Role {
-    private Long id;
+    private ObjectId id;
     private String name;
+    
+    @DBRef
     private Set<User> users;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+   // @GeneratedValue(strategy = GenerationType.AUTO)
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -28,7 +37,8 @@ public class Role {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "roles")
+    //@ManyToMany(mappedBy = "roles")
+    
     public Set<User> getUsers() {
         return users;
     }

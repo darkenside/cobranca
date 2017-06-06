@@ -3,7 +3,7 @@ package com.omalotech.cobranca.repository;
 public enum StatusTitulo {
 
 	PENDENTE("Pendente"),
-	RECEBIDO("Recebido")
+	RECEBIDO("Pago")
 	;
 
 	String descricao;
