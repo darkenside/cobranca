@@ -68,7 +68,7 @@ UserService userService;
 
 		
 	@RequestMapping(value="/nomeUser/{nomeUser}",method=RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Titulo> pesquisarPorNome(@PathVariable("nomeUser") String nomeUser)  {
+	public List<Titulo> pesquisarPorNome(@PathVariable("nomeUser") String nomeUser)  {
 		User usuario = userService.findByUsername(nomeUser);
 		List<Titulo> titulos = new ArrayList<>();
 		
