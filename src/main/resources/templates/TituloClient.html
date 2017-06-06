@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<head>
+
+<title th:text="#{com.omalotech.pesquisa.de.t}"></title>
+
+</head>
+<section layout:fragment="conteudo">
+	<div layout:include="MensagemSucesso"></div>
+	<div class="panel panel-default">
+
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title otech-titulo-panel" th:text="#{com.omalotech.pesquisa.de.t.u}"></h1>
+				<a class="btn btn-link otech-link-panel" th:href="@{/titulos/novo}" th:text="#{com.omalotech.novo.titulo}"></a>
+			</div>
+		</div>
+
+		<div class="panel-body">
+
+			
+				<form method="GET" class="form-horizontal" th:action="@{/tituloClient/{usuario}}" th:object="${filtro}">
+					<div class="form-group">
+						<div class="col-sm-4">
+							<div class="input-group">
+								<input class="form-control" th:field="*{descricao}" autofocus="autofocus" name="descricao"
+								       placeholder="Usuario"></input> 
+									<span class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+								</span>
+							</div>
+						</div>
+			        </div>
+				</form>
+			
+			<div class="table-responsive">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center col-md-2" th:text="#{com.omalotech.codigo}"></th>
+						<th th:text="#{com.omalotech.descricao}"></th>
+						<th class="text-center col-md-2" th:text="#{com.omalotech.dataVencimento}"></th>
+						<th class="text-right col-md-2" th:text="#{com.omalotech.valor}"></th>
+						<th class="text-center col-md-2" th:text="#{com.omalotech.status}"></th>
+						
+					</tr>
+
+				</thead>
+				<tbody>
+
+					<tr th:each="titulo : ${titulosPesquisa}">
+						<td class="text-center" th:text="${titulo.codigo}"></td>
+						<td th:text="${titulo.descricao}"></td>
+						<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
+						<td class="text-right" th:text="|R$ ${{titulo.valor}}|"></td>
+						<td class="text-center" th:attr="data-role=${titulo.codigo}">
+						<span class="label"
+							th:text="${titulo.status.descricao}"
+							th:classappend="${#strings.toString(titulo.status) == 'PENDENTE' ? 'label-danger' : 'label-success'}"></span>
+
+						</td>
+				
+					</tr>
+					<tr>
+						<td colspan="6" th:if="${#lists.isEmpty(titulosPesquisa)}" th:text="#{com.omalotech.registro.nao.encont}"></td>
+					</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<br></br>
+		<h4 class="text-left"><a th:href="@{/titulos}">Pesquisa por título via base</a></h4>
+		</div>
+		 		
+
+		
+	</div>
+</section>
+
+
+</html>
+
+
