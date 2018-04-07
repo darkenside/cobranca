@@ -1,1 +1,1 @@
-java -jar target/cobranca.war
+Web:java -jar target/*.war
