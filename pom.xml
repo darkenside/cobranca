@@ -85,6 +85,13 @@
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
 		</dependency>
+	<dependency> 
+ 		<groupId>com.newrelic.agent.java</groupId>
+ 		<artifactId>newrelic-java</artifactId>
+ 		<version>4.0.0</version>
+ 		<scope>provided</scope>
+ 		<type>zip</type>
+	</dependency> 
 		
 <dependency>
     <groupId>com.google.code.gson</groupId>
